@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-gray-100 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface/60 backdrop-blur-md border border-white/10;
+  }
+  
+  .btn-primary {
+    @apply px-4 py-2 bg-primary text-white rounded-lg font-medium transition-all hover:bg-primary-light active:scale-95 shadow-lg shadow-primary/20;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-surface border border-white/20 text-white rounded-lg font-medium transition-all hover:bg-white/5 active:scale-95;
+  }
+
+  .card {
+    @apply glass p-6 rounded-2xl;
+  }
+
+  .badge-low {
+    @apply px-2 py-0.5 rounded-full bg-success/20 text-success text-xs font-bold uppercase;
+  }
+
+  .badge-medium {
+    @apply px-2 py-0.5 rounded-full bg-warning/20 text-warning text-xs font-bold uppercase;
+  }
+
+  .badge-high {
+    @apply px-2 py-0.5 rounded-full bg-danger/20 text-danger text-xs font-bold uppercase;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
