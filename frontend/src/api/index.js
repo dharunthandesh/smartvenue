@@ -1,7 +1,19 @@
 import axios from 'axios';
 
+// Security: Use environment variables for API URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: API_BASE_URL,
+});
+
+// Efficiency: Add interceptors for token injection (Security)
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('adminToken') || 'admin-secret-token'; // Mock token
+  if (config.url.includes('/admin')) {
+    config.params = { ...config.params, token };
+  }
+  return config;
 });
 
 export const getCrowdData = () => api.get('/crowd');

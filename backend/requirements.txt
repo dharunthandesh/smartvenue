@@ -5,3 +5,7 @@ python-dotenv
 firebase-admin
 pytest
 httpx
+slowapi
+python-multipart
+passlib[bcrypt]
+python-jose[cryptography]

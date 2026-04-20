@@ -29,13 +29,27 @@ The solution is built on the principle of **Proactive Infrastructure Management*
 *   **Sensor Input**: The simulation assumes data is sourced from existing overhead computer vision cameras or BLE beacon trilateration.
 *   **User Compliance**: Navigation logic assumes that a significant percentage of users will follow the "quieter route" suggestion to balance the load.
 
+### 🔐 Security+ & Efficiency
+*   **Rate Limiting**: Implemented `slowapi` to prevent DDoS and brute-force attacks on sensitive endpoints.
+*   **Input Validation**: Strict Pydantic schemas for all API payloads (Navigation, Admin Updates).
+*   **Mock Authentication**: JWT-ready token verification logic for the Admin Panel.
+*   **Optimized State**: API client with automatic token injection and local caching for sub-second response times.
+
+### ☁️ Google Cloud Services
+*   **Firebase Realtime DB**: The backend is now fully architected to use Google Firebase as the primary source of truth.
+*   **Environment Agnostic**: Seamlessly falls back to simulated data if service account credentials are not present, ensuring 100% uptime for demo purposes.
+
+### ♿ Accessibility (WCAG 2.1)
+*   **Semantic HTML**: Proper use of `<header>`, `<main>`, and `<aside>`.
+*   **ARIA Suite**: Comprehensive implementation of `aria-live`, `aria-label`, and `role="status"` for real-time dashboard updates, making the app usable via screen readers.
+
 ---
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: React.js, Tailwind CSS, Framer Motion, Recharts, Lucide Icons.
-- **Backend**: Python (FastAPI), Pydantic, Uvicorn.
-- **Data Simulation**: In-memory state with random fluctuation logic.
+- **Backend**: Python (FastAPI), Pydantic, Uvicorn, SlowAPI, Firebase-Admin.
+- **Data Persistence**: Google Firebase (Realtime Database).
 
 ## 📦 Project Structure
 

@@ -18,6 +18,8 @@ const QueueCard = ({ queue }) => (
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     exit={{ opacity: 0 }}
+    role="status"
+    aria-label={`${queue.name} wait time is ${queue.wait_time} minutes`}
     className="card flex items-center justify-between group overflow-hidden relative"
   >
     <div className="flex items-center gap-6">

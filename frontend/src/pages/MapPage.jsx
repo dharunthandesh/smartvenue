@@ -53,8 +53,12 @@ const MapPage = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Map Visualization (Simplified) */}
-          <div className="lg:col-span-2 card relative min-h-[400px] flex items-center justify-center bg-zinc-900 border-zinc-800">
-             <div className="absolute inset-0 opacity-10 flex items-center justify-center">
+          <div 
+            className="lg:col-span-2 card relative min-h-[400px] flex items-center justify-center bg-zinc-900 border-zinc-800"
+            role="region"
+            aria-label="Stadium interactive crowd map"
+          >
+             <div className="absolute inset-0 opacity-10 flex items-center justify-center" aria-hidden="true">
                 <Users size={300} />
              </div>
              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full h-full p-4 relative z-10">
@@ -62,6 +66,9 @@ const MapPage = () => {
                   <motion.div
                     key={zone.zone_id}
                     layoutId={zone.zone_id}
+                    role="status"
+                    aria-live="polite"
+                    aria-label={`${zone.zone_name}: ${zone.density} density, ${zone.population} people`}
                     className={`rounded-2xl p-6 border flex flex-col justify-between transition-colors ${
                       zone.density === 'high' ? 'bg-danger/10 border-danger/30' : 
                       zone.density === 'medium' ? 'bg-warning/10 border-warning/30' : 
