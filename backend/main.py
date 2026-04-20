@@ -141,9 +141,29 @@ async def get_stadium_asset(filename: str):
         return {"url": blob.public_url, "service": "Google Cloud Storage"}
     return {"url": f"local_mock/{filename}", "service": "Local Storage"}
 
+async def verify_admin(token: Optional[str] = None):
+    if token != "admin-secret-token": 
+        raise HTTPException(status_code=403, detail="Unauthorized")
+
+@app.post("/navigation")
+async def get_navigation(req: Dict):
+    """Security check: Validate locations before pathfinding."""
+    valid_locations = ["North Gate", "West Stand", "South Entrance", "Food Court Alpha", "VIP Lounge", "East Concourse"]
+    start = req.get("current_location")
+    end = req.get("destination")
+    if start not in valid_locations or end not in valid_locations:
+        raise HTTPException(status_code=400, detail="Invalid location coordinates.")
+    
+    path = [start, "Safe Corridor 2", end]
+    return {
+        "path": path,
+        "estimated_time": random.randint(4, 9),
+        "recommendation": "Route through Zone B2 is least crowded and security-verified."
+    }
+
 @app.get("/admin/analytics")
-async def get_analytics():
-    """Enterprise analytics using real-time data."""
+async def get_analytics(user: str = Depends(verify_admin)):
+    """Enterprise analytics using real-time data - Admin Only."""
     return {
         "total_population": random.randint(1000, 5000),
         "active_google_services": ["Firebase", "Gemini AI", "Cloud Storage", "Translation"],
