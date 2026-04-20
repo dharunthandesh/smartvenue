@@ -2,13 +2,34 @@
 
 SmartVenue AI is a cutting-edge full-stack application designed to improve the physical event experience at large-scale sporting venues. By leveraging real-time data simulation and AI-driven insights, it optimizes crowd movement, reduces waiting times, and ensures safety through coordinated alerts.
 
-## 🚀 Features
+---
 
-- **Live Crowd Monitoring**: Dynamic heatmaps and density visualization across stadium zones.
-- **Smart Queue Management**: Real-time wait time estimates for food, washrooms, and gates.
-- **Smart Pathfinding**: Navigation logic that suggests the shortest and least crowded routes.
-- **Real-Time Alerts**: Instant broadcasts for safety updates and route changes.
-- **Admin Command Center**: Operations dashboard for manual overrides, alert triggering, and population analytics.
+## 🏗️ Project Overview
+
+### 🎯 Chosen Vertical: Large-Scale Sports & Entertainment Venues
+Large stadiums face massive challenges in logistical efficiency, specifically regarding "bottleneck" congestion at food stalls, washrooms, and exit gates. SmartVenue AI is designed for venue operators and attendees to turn a chaotic physical environment into a data-driven, manageable experience.
+
+### 🧠 Approach & Logic
+The solution is built on the principle of **Proactive Infrastructure Management**:
+1.  **Distributed Monitoring**: The system divides the venue into logical "Zones" (e.g., North Gate, West Stand, Food Court).
+2.  **Density Evaluation**: Each zone is assigned a density level (Low, Medium, High) based on real-time population counts.
+3.  **Heuristic Queue Logic**: Wait times are not just static values; they are calculated based on current active users in the queue proximity and historical stall capacity.
+4.  **Optimized Pathfinding**: The navigation logic uses a weight-based graph simulation. Instead of just "shortest distance," it calculates a "cost" for each route where high-density zones add significant time penalties, effectively rerouting users to "quieter" paths.
+
+### ⚙️ How the Solution Works
+1.  **Data Fetching**: The frontend polls the FastAPI backend every 5 seconds (simulating real-time IoT/Sensor data streams).
+2.  **Live Updates**:
+    *   **Map**: Updates based on `/crowd` endpoint, showing color-coded heatmaps.
+    *   **Queues**: Updates via `/queue`, showing minutes of wait time with dynamic progress bars.
+3.  **Advisory Logic**: The system identifies trends (e.g., "Taco Shack wait times are trending UP") and pushes an "AI Recommendation" to the user's dashboard to encourage movement before the peak.
+4.  **Admin Control**: Operators can manually override zone density (in case of mechanical sensor failure) and trigger "Emergency Broadcasts" that appear instantly on all attendee devices.
+
+### 📝 Assumptions Made
+*   **Connectivity**: We assume high-density Wi-Fi or 5G coverage is available across the venue for real-time polling.
+*   **Sensor Input**: The simulation assumes data is sourced from existing overhead computer vision cameras or BLE beacon trilateration.
+*   **User Compliance**: Navigation logic assumes that a significant percentage of users will follow the "quieter route" suggestion to balance the load.
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -64,9 +85,8 @@ SmartVenueAI/
    ```bash
    npm run dev
    ```
-   The application will be available at `http://localhost:5173`.
+   The application will be available at `http://localhost:5174`.
 
-### Running Tests
 To run backend tests:
 ```bash
 cd backend
