@@ -52,7 +52,16 @@ const Layout = ({ children }) => {
             <SidebarLink to="/alerts" icon={Bell} label="Alerts" active={location.pathname === '/alerts'} />
           </nav>
 
-          <div className="pt-6 border-t border-white/5">
+          <div className="pt-6 border-t border-white/5 space-y-4">
+            <div className="px-4">
+               <label className="text-[10px] font-black uppercase text-gray-500 mb-2 block tracking-widest">Select Language</label>
+               <select className="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs focus:outline-none focus:border-primary">
+                  <option value="en">🇺🇸 English</option>
+                  <option value="es">🇪🇸 Español (GCP)</option>
+                  <option value="fr">🇫🇷 Français (GCP)</option>
+                  <option value="hi">🇮🇳 हिन्दी (GCP)</option>
+               </select>
+            </div>
             <SidebarLink to="/admin" icon={Shield} label="Admin Panel" active={location.pathname === '/admin'} />
           </div>
         </div>

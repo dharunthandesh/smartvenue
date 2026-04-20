@@ -9,3 +9,6 @@ slowapi
 python-multipart
 passlib[bcrypt]
 python-jose[cryptography]
+google-generativeai
+google-cloud-translate
+google-cloud-storage
